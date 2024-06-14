@@ -29,3 +29,11 @@ jobs:
           name: cucumber-report
           path: reports/
           retention-days: 30
+      - name: Deploy to GitHub Pages
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir public
+          cp -r reports/* public/
+          echo '<meta http-equiv="refresh" content="0;url=cucumber-report.html">' > public/index.html
