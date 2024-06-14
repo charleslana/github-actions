@@ -21,6 +21,8 @@ jobs:
       #   run: npx playwright test
       - name: Run Cucumber all tests
         run: npm run test
+      - name: Move Cucumber report to artifact folder
+        run: mv reports/cucumber-report.html reports/index.html
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -36,4 +38,3 @@ jobs:
         run: |
           mkdir public
           cp -r reports/* public/
-          echo '<meta http-equiv="refresh" content="0;url=cucumber-report.html">' > public/index.html
