@@ -31,10 +31,21 @@ jobs:
           name: cucumber-report
           path: reports/
           retention-days: 30
+      - name: Prepare artifacts for GitHub Pages
+        run: |
+          mkdir public
+          cp reports/index.html public/
       - name: Deploy to GitHub Pages
         if: always()
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          mkdir public
-          cp -r reports/* public/
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git fetch
+          git checkout gh-pages || git checkout --orphan gh-pages
+          git reset --hard
+          cp -r public/* .
+          git add .
+          git commit -m "Deploy GitHub Pages"
+          git push -f origin gh-pages
