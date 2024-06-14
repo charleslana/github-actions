@@ -21,11 +21,11 @@ jobs:
       #   run: npx playwright test
       - name: Run Cucumber all tests
         run: npm run test
-      - name: Move Cucumber report to artifact folder
-        run: mv reports/cucumber-report.html playwright-report/
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: playwright-report
-          path: playwright-report/
+          # name: playwright-report
+          # path: playwright-report/
+          name: cucumber-report
+          path: reports/
           retention-days: 30
