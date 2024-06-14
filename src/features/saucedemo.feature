@@ -1,5 +1,5 @@
 @Saucedemo
-Feature: Finish cart after login
+Feature: Saucedemo Example
   @LoginSaucedemo
   Scenario: Login saucedemo success
     Given I navigate to saucedemo page
