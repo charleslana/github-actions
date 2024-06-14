@@ -36,15 +36,16 @@ class TestManager {
 
   private async getBrowser(): Promise<Browser> {
     const browserType = process.env.BROWSER as BrowserType;
+    const headless = process.env.HEADLESS !== 'false';
     switch (browserType) {
       case 'chromium':
-        return await chromium.launch({ headless: false });
+        return await chromium.launch({ headless: headless });
       case 'firefox':
-        return await firefox.launch({ headless: false });
+        return await firefox.launch({ headless: headless });
       case 'webkit':
-        return await webkit.launch({ headless: false });
+        return await webkit.launch({ headless: headless });
       default:
-        return await chromium.launch({ headless: false });
+        return await chromium.launch({ headless: headless });
     }
   }
 }
