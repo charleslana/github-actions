@@ -22,7 +22,7 @@ jobs:
       - name: Run Cucumber all tests
         run: npm run test
       - name: Move Cucumber report to artifact folder
-        run: mv reports/cucumber-report.html reports/
+        run: mv reports/cucumber-report.html playwright-report/
       - uses: actions/upload-artifact@v4
         if: always()
         with:
